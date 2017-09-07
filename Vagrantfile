@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "db" do |db|
     db.vm.box = "ubuntu/trusty64"
-    db.vm.network "forwarded_port", guest: 5432, host: 5432, host_ip: "192.168.1.11"
+    db.vm.network "forwarded_port", guest: 5432, host: 5432
     db.vm.network "private_network", ip: "192.168.1.11"
 
     db.vm.provider "virtualbox" do |vb1|
@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "web" do |web|
     web.vm.box = "ubuntu/trusty64"
-    web.vm.network "forwarded_port", guest:8000, host:8000, host_ip: "192.168.1.10"
+    web.vm.network "forwarded_port", guest:8000, host:8000
     web.vm.network "private_network", ip: "192.168.1.10"
 
     web.vm.provider "virtualbox" do |vb2|
@@ -34,6 +34,7 @@ Vagrant.configure(2) do |config|
       vb2.cpus = 1
     end
 
+    web.vm.synced_folder '.', '/vagrant'
     web.vm.provision "shell", path: "scriptweb.sh"
 
   end

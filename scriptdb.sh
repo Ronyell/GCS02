@@ -1,4 +1,4 @@
-# apt-get update
+apt-get update
 apt-get install -y vim git
 sudo apt-get install -y postgresql
 sudo su - postgres -c "psql -f /vagrant/db-config.sql"
