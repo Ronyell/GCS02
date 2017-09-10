@@ -34,7 +34,6 @@ Vagrant.configure(2) do |config|
       vb2.cpus = 1
     end
 
-    web.vm.synced_folder '.', '/vagrant'
     web.vm.provision "shell", path: "scriptweb.sh"
 
   end
